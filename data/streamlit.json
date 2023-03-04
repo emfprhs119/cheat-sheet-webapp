@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "header": "<small>[State API](https://docs.streamlit.io/en/stable/session_state_api.html)</small><br><small>[Theme option reference](https://docs.streamlit.io/en/stable/theme_options.html)</small><br><small>[Components API reference](https://docs.streamlit.io/en/stable/develop_streamlit_components.html)</small><br><small>[API cheat sheet](https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py)</small><br>",
+    "columns": 2
+  },
+  "contents": [
+    {
+      "header": "Magic commands",
+      "markdown": "",
+      "code": "# Magic commands implicitly `st.write()`\n''' _This_ is some __Markdown__ '''\na=3\n'dataframe:', data"
+    },
+    {
+      "header": "Display text",
+      "markdown": "",
+      "code": "st.text('Fixed width text')\nst.markdown('_Markdown_') # see *\nst.caption('Balloons. Hundreds of them...')\nst.latex(r''' e^{i\\pi} + 1 = 0 ''')\nst.write('Most objects') # df, err, func, keras!\nst.write(['st', 'is <', 3]) # see *\nst.title('My title')\nst.header('My header')\nst.subheader('My sub')\nst.code('for i in range(8): foo()')\n\n* optional kwarg unsafe_allow_html = True"
+    },
+    {
+      "header": "Display data",
+      "markdown": "",
+      "code": "st.dataframe(my_dataframe)\nst.table(data.iloc[0:10])\nst.json({'foo':'bar','fu':'ba'})\nst.metric(label=\"Temp\", value=\"273 K\", delta=\"1.2 K\")"
+    },
+    {
+      "header": "Display charts",
+      "markdown": "",
+      "code": "st.line_chart(data)\nst.area_chart(data)\nst.bar_chart(data)\nst.pyplot(fig)\nst.altair_chart(data)\nst.vega_lite_chart(data)\nst.plotly_chart(data)\nst.bokeh_chart(data)\nst.pydeck_chart(data)\nst.deck_gl_chart(data)\nst.graphviz_chart(data)\nst.map(data)"
+    },
+    {
+      "header": "Display media",
+      "markdown": "",
+      "code": "st.image('./header.png')\nst.audio(data)\nst.video(data)"
+    },
+    {
+      "header": "Display interactive widgets",
+      "markdown": "",
+      "code": "st.button('Hit me')\nst.download_button('On the dl', data)\nst.checkbox('Check me out')\nst.radio('Radio', [1,2,3])\nst.selectbox('Select', [1,2,3])\nst.multiselect('Multiselect', [1,2,3])\nst.slider('Slide me', min_value=0, max_value=10)\nst.select_slider('Slide to select', options=[1,'2'])\nst.text_input('Enter some text')\nst.number_input('Enter a number')\nst.text_area('Area for textual entry')\nst.date_input('Date input')\nst.time_input('Time entry')\nst.file_uploader('File uploader')\nst.camera_input(\"\u4e00\u4e8c\u4e09,\u8304\u5b50!\")\nst.color_picker('Pick a color')"
+    },
+    {
+      "header": "Control flow",
+      "markdown": "",
+      "code": "st.stop()\nst.experimental_rerun()"
+    },
+    {
+      "header": "Layout your app",
+      "markdown": "",
+      "code": "st.form('my_form_identifier')\nst.form_submit_button('Submit to me')\nst.container()\nst.columns(spec)\n>>> col1, col2 = st.columns(2)\n>>> col1.subheader('Columnisation')\nst.expander('Expander')\n>>> with st.expander('Expand'):\n>>>     st.write('Juicy deets')"
+    },
+    {
+      "header": "Display code",
+      "markdown": "",
+      "code": "st.echo()\n>>> with st.echo():\n>>>     st.write('Code will be executed and printed')"
+    },
+    {
+      "header": "Display progress and status",
+      "markdown": "",
+      "code": ">>> with st.spinner(text='In progress'):\n>>>   time.sleep(5)\n>>>   st.success('Done')\n\nst.progress(progress_variable_1_to_100)\nst.balloons()\nst.snow()\nst.error('Error message')\nst.warning('Warning message')\nst.info('Info message')\nst.success('Success message')\nst.exception(e)"
+    },
+    {
+      "header": "Placeholders, help, and options",
+      "markdown": "",
+      "code": "# Replace any single element.\n>>> element = st.empty()\n>>> element.line_chart(...)\n>>> element.text_input(...)  # Replaces previous.\n\n# Insert out of order.\n>>> elements = st.container()\n>>> elements.line_chart(...)\n>>> st.write(\"Hello\")\n>>> elements.text_input(...)  # Appears above \"Hello\".\n\nst.help(pandas.DataFrame)\nst.get_option(key)\nst.set_option(key, value)\nst.set_page_config(layout='wide')\nst.experimental_show(objects)\nst.experimental_get_query_params()\nst.experimental_set_query_params(**params)"
+    },
+    {
+      "header": "Mutate data",
+      "markdown": "",
+      "code": "# Add rows to a dataframe after\n# showing it.\n>>> element = st.dataframe(df1)\n>>> element.add_rows(df2)\n\n# Add rows to a chart after\n# showing it.\n>>> element = st.line_chart(df1)\n>>> element.add_rows(df2)"
+    },
+    {
+      "header": "Optimize performance",
+      "markdown": "",
+      "code": ">>> @st.cache\n... def foo(bar):\n...   # Do something expensive in here...\n...   return data\n>>> # Executes foo\n>>> d1 = foo(ref1)\n>>> # Does not execute foo\n>>> # Returns cached item by reference, d1 == d2\n>>> d2 = foo(ref1)\n>>> # Different arg, so function foo executes\n>>> d3 = foo(ref2)"
+    },
+    {
+      "header": "IFrame html",
+      "markdown": "",
+      "code": "components.html()"
+    }
+  ]
+}
